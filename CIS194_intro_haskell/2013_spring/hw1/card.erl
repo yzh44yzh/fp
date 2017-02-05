@@ -4,7 +4,6 @@
 
 %% validate(4012888888881881) is true
 
-
 -spec validate(integer()) -> boolean().
 validate(CardNum) ->
     Digits = to_digit_list(CardNum, []),
