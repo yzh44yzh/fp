@@ -4,29 +4,30 @@
 -type state() :: {peg(), peg(), peg()}.
 -type move_type() :: ab | ac | bc | ba | cb | ca.
 
--export([hanoi/1]).
+-export([init/1, solve/1]).
 
 
--spec hanoi(integer()) -> state().
-hanoi(NumDisks) ->
-    State = {lists:seq(1, NumDisks), [], []},
-    do_moves([ac, ab, cb, ac, ba, bc, ac], State).
+-spec init(integer()) -> state().
+init(NumDisks) ->
+    {lists:seq(1, NumDisks), [], []}.
 
 
--spec do_moves([move_type()], state()) -> state().
-do_moves([], Res) -> Res;
-do_moves([Move | Moves], State) ->
-    io:format("~p ~p~n", [Move, State]), % TEMP
-    do_moves(Moves, move(Move, State)).
+-spec solve(state()) -> state().
+solve(State) ->
+    Moves = [ac, ab, cb, ac, ba, bc, ac], % valid for 3 disks
+    lists:foldl(fun move/2, State, Moves).
 
 
 -spec move(move_type(), state()) -> state().
-move(ab, {A, B, C}) -> {F, T} = place(A, B), {F, T, C};
-move(ac, {A, B, C}) -> {F, T} = place(A, C), {F, B, T};
-move(bc, {A, B, C}) -> {F, T} = place(B, C), {A, F, T};
-move(ba, {A, B, C}) -> {F, T} = place(B, A), {T, F, C};
-move(cb, {A, B, C}) -> {F, T} = place(C, B), {A, T, F};
-move(ca, {A, B, C}) -> {F, T} = place(C, A), {T, B, F}.
+move(Move, {A, B, C}) ->
+    case Move of
+        ab -> {F, T} = place(A, B), {F, T, C};
+        ac -> {F, T} = place(A, C), {F, B, T};
+        bc -> {F, T} = place(B, C), {A, F, T};
+        ba -> {F, T} = place(B, A), {T, F, C};
+        cb -> {F, T} = place(C, B), {A, T, F};
+        ca -> {F, T} = place(C, A), {T, B, F}
+    end.
 
 
 -spec place(FromPeg :: peg(), ToPeg :: peg()) -> {peg(), peg()}.
