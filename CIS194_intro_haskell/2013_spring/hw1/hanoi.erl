@@ -1,19 +1,25 @@
 -module(hanoi).
 
--type peg() :: [integer()].
--type state() :: {peg(), peg(), peg()}.
+-type disk() :: integer().
+-type peg() :: [disk()].
 -type move_type() :: ab | ac | bc | ba | cb | ca.
+-type state() :: {peg(), peg(), peg(), [move_type()]}.
 
 -export([init/1, solve/1]).
 
 
 -spec init(integer()) -> state().
 init(NumDisks) ->
-    {lists:seq(1, NumDisks), [], []}.
+    {lists:seq(1, NumDisks), [], [], []}.
 
 
 -spec solve(state()) -> state().
+solve({[], _, [], _} = State) -> State; % solved
+solve({[LastDisk], [], PedC, Moves}) -> solve({[], [LastDisk], PedC, [ab | Moves]});
 solve(State) ->
+    %% Move len(A)-1 disks from a to c
+    %% Move lastA ab
+    %% Move all C from c to b
     Moves = [ac, ab, cb, ac, ba, bc, ac], % valid for 3 disks
     lists:foldl(fun move/2, State, Moves).
 
