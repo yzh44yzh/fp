@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wall #-}
+
 validate :: Int -> Bool
 validate cardNum =
     let code = (sumDigits . dobleOddPositions . num2digits) cardNum in
@@ -33,3 +35,10 @@ sumDigits =
         where f = \acc val ->
                   if val > 10 then (sumDigits . num2digits) val + acc
                   else val + acc
+
+
+main :: IO ()
+main =
+    let cardNum = 4012888888881881 in
+    let res = validate cardNum in
+    putStrLn $ (show cardNum) ++ " " ++ (show res)

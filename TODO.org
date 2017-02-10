@@ -9,8 +9,49 @@ http://www.seas.upenn.edu/%7Ecis194/spring13/hw/01-intro.pdf -- Homework
 *** DONE credit card validation
 Erlang, Haskell, OCaml, Scala
 
+
 *** TODO hanoi
 Erlang
+
+- solution
+S0 = hanoi:init(0).
+{[],[],[],[]}
+hanoi:solve(S0).
+{[],[],[],[]}
+
+S1 = hanoi:init(1).
+{[1],[],[],[]}
+hanoi:solve(S1).
+{[],[1],[],[ab]}
+
+S2 = hanoi:init(2).
+{[1,2],[],[],[]}
+hanoi:solve(S2).
+{[],[1,2],[],[ac,ab,cb]}
+
+S3 = hanoi:init(3).
+{[1,2,3],[],[],[]}
+hanoi:solve(S3).
+{[],[1,2,3],[],[ab,ac,bc,ab,ca,cb,ab]}
+
+S4 = hanoi:init(4).
+{[1,2,3,4],[],[],[]}
+{[],
+ [1,2,3,4],
+ [],
+ [ac,ab,cb,ac,ba,bc,ac,ab,cb,ca,ba,cb,ac,ab,cb]}
+
+S5 = hanoi:init(5).
+{[1,2,3,4,5],[],[],[]}
+{[],[1,2,3,4,5],[],[ab,ac,bc,ab,ca,cb,ab,ac,bc,ba,ca,bc,ab,ac,bc,ab,ca,cb,ab,ca,bc,ba,ca,cb,ab,ac,bc,ab,ca,cb,ab]}
+
+
+- unit tests
+
+- refactor
+
+- dialyzer
+
 Haskell, OCaml, Scala
 
 
