@@ -1,7 +1,8 @@
 -module(hanoi).
 
--type disk() :: integer().
--type peg() :: [disk()].
+-include_lib("eunit/include/eunit.hrl").
+
+-type peg() :: [integer()].
 -type peg_name() :: a | b | c.
 -type step() :: ab | ac | bc | ba | cb | ca.
 -type steps() :: [step()].
@@ -55,3 +56,34 @@ step(FromPeg, ToPeg, {A, B, C, Steps}) ->
 -spec place(FromPeg :: peg(), ToPeg :: peg()) -> {peg(), peg()}.
 place([Top | Rest], []) -> {Rest, [Top]};
 place([Top | Rest], [H | _] = ToPeg) when Top < H -> {Rest, [Top | ToPeg]}.
+
+
+solve_test() ->
+    S0 = hanoi:init(0),
+    ?assertEqual({[],[],[],[]}, S0),
+    ?assertEqual({[],[],[],[]}, hanoi:solve(S0)),
+
+    S1 = hanoi:init(1),
+    ?assertEqual({[1],[],[],[]}, S1),
+    ?assertEqual({[],[1],[],[ab]}, hanoi:solve(S1)),
+
+    S2 = hanoi:init(2),
+    ?assertEqual({[1,2],[],[],[]}, S2),
+    ?assertEqual({[],[1,2],[],[ac,ab,cb]}, hanoi:solve(S2)),
+
+    S3 = hanoi:init(3),
+    ?assertEqual({[1,2,3],[],[],[]}, S3),
+    ?assertEqual({[],[1,2,3],[],[ab,ac,bc,ab,ca,cb,ab]}, hanoi:solve(S3)),
+
+    S4 = hanoi:init(4),
+    ?assertEqual({[1,2,3,4],[],[],[]}, S4),
+    ?assertEqual({[], [1,2,3,4], [],
+                  [ac,ab,cb,ac,ba,bc,ac,ab,cb,ca,ba,cb,ac,ab,cb]},
+                 hanoi:solve(S4)),
+
+    S5 = hanoi:init(5),
+    ?assertEqual({[1,2,3,4,5],[],[],[]}, S5),
+    ?assertEqual({[],[1,2,3,4,5],[],
+                  [ab,ac,bc,ab,ca,cb,ab,ac,bc,ba,ca,bc,ab,ac,bc,ab,ca,cb,ab,ca,bc,ba,ca,cb,ab,ac,bc,ab,ca,cb,ab]},
+                 hanoi:solve(S5)),
+    ok.
