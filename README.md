@@ -19,19 +19,27 @@ http://www.seas.upenn.edu/~cis194/fall16/
 # Lang notes
 
 ## Haskell
+```
 $ ghci
 Prelude> :l filename.hs
+```
 
 ## OCaml
+```
 $ eval `opam config env`
 $ utop
 utop # #use "filename.ml";;
+```
 
 ## Erlang
+```
 $ erl
 1> c(modulename).
+```
 
 ## Scala
+```
 $ sbt
 > console
 scala> :load MyModule.scala
+```
