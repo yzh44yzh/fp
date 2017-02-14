@@ -11,8 +11,8 @@ Erlang, Haskell, OCaml, Scala
 
 
 *** TODO hanoi
-+ Erlang, OCaml
-- Haskell, Scala
++ Erlang, OCaml, Haskell
+- Scala
 
 
 ** hw1 2016
