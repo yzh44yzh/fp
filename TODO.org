@@ -10,9 +10,8 @@ http://www.seas.upenn.edu/%7Ecis194/spring13/hw/01-intro.pdf -- Homework
 Erlang, Haskell, OCaml, Scala
 
 
-*** TODO hanoi
-+ Erlang, OCaml, Haskell
-- Scala
+*** DONE hanoi
+Erlang, OCaml, Haskell, Scala
 
 
 ** hw1 2016
