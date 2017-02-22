@@ -18,7 +18,8 @@ http://www.seas.upenn.edu/~cis194/fall16/hw/01-intro.html
 *** DONE Exercise 1: Traffic lights
 Haskell
 
-*** Exercise 2: Blooming trees
+*** DONE Exercise 2: Blooming trees
+Haskell
 
 *** Exercise 3: Sokoban tiles
 
