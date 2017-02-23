@@ -1,4 +1,4 @@
-* Homework 1
+* DONE Homework 1
 
 ** DONE hw1 2013
 (2014, 2015 are the same)
@@ -12,7 +12,7 @@ Erlang, Haskell, OCaml, Scala
 Erlang, OCaml, Haskell, Scala
 
 
-** hw1 2016
+** DONE hw1 2016
 http://www.seas.upenn.edu/~cis194/fall16/hw/01-intro.html
 
 *** DONE Exercise 1: Traffic lights
@@ -21,7 +21,8 @@ Haskell
 *** DONE Exercise 2: Blooming trees
 Haskell
 
-*** Exercise 3: Sokoban tiles
+*** DONE Exercise 3: Sokoban
+Haskell
 
 
 * Homework 2
@@ -35,3 +36,18 @@ http://www.seas.upenn.edu/%7Ecis194/spring13/hw/02-ADTs.pdf
 ** hw2 2015
 
 ** hw2 2016
+
+
+* Sokoban
+https://en.wikipedia.org/wiki/Sokoban
+
+** DONE draw state
+
+** get & parse move
+   up
+   down
+   10u5ldd7r (10 up, 5 left, down, down, right)
+
+** apply move and redraw state
+
+** win
