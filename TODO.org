@@ -1,41 +1,26 @@
-* DONE Homework 1
-
-** DONE hw1 2013
-(2014, 2015 are the same)
-http://www.seas.upenn.edu/%7Ecis194/spring13/hw/01-intro.pdf -- Homework
-
-*** DONE credit card validation
-Erlang, Haskell, OCaml, Scala
-
-
-*** DONE hanoi
-Erlang, OCaml, Haskell, Scala
-
-
-** DONE hw1 2016
-http://www.seas.upenn.edu/~cis194/fall16/hw/01-intro.html
-
-*** DONE Exercise 1: Traffic lights
-Haskell
-
-*** DONE Exercise 2: Blooming trees
-Haskell
-
-*** DONE Exercise 3: Sokoban
-Haskell
-
-
 * Homework 2
 
-** hw2 2013
-http://www.seas.upenn.edu/%7Ecis194/spring13/lectures/02-ADTs.html
-http://www.seas.upenn.edu/%7Ecis194/spring13/hw/02-ADTs.pdf
+** DONE hw2 2013
+Haskell only
 
 ** hw2 2014
+http://www.seas.upenn.edu/~cis194/fall14/hw/02-dict.pdf
 
 ** hw2 2015
+http://www.seas.upenn.edu/~cis194/spring15/hw/02-lists.pdf
 
 ** hw2 2016
+http://www.seas.upenn.edu/~cis194/fall16/hw/02-ho-datatypes.html
+
+
+* Homework 3
+
+** hw3 2013
+hw3 2014 same as hw2 2013
+
+** hw3 2015
+
+** hw3 2016
 
 
 * Sokoban
