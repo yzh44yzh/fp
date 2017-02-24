@@ -16,6 +16,10 @@ http://www.seas.upenn.edu/~cis194/spring15/
 http://www.seas.upenn.edu/~cis194/fall16/
 
 
+# Functional Programming in Erlang
+https://www.futurelearn.com/courses/functional-programming-erlang/
+
+
 # Lang notes
 
 ## Haskell
