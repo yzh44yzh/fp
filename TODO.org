@@ -1,8 +1,5 @@
 * Homework 2
 
-** hw2 2014
-http://www.seas.upenn.edu/~cis194/fall14/hw/02-dict.pdf
-
 ** hw2 2015
 http://www.seas.upenn.edu/~cis194/spring15/hw/02-lists.pdf
 
@@ -33,3 +30,9 @@ https://en.wikipedia.org/wiki/Sokoban
 ** apply move and redraw state
 
 ** win
+
+
+* fpe
+- week2
+  - text_processing.md
+  - supermarket_billing.md
