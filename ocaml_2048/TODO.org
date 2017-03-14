@@ -1,0 +1,19 @@
+- Matrix zipper
+  - create
+    - check inner lists have equal lengthes
+      before creating zippers
+    - need map with bind instead of create_row
+  - mli
+  - tests for create, to_matrix, to_string
+  - left, right, up, down with tests
+  - left, right, up, down with steps, with tests
+  - get, set with tests
+  - get_position, set_position with tests
+
+
+- рендер матрицы в консоль
+  просто stdio/stdout, или какой-нибудь ncurses?
+
+
+https://ocaml.org/learn/tutorials/99problems.html
+порешать задачки
