@@ -26,6 +26,7 @@ https://www.futurelearn.com/courses/functional-programming-erlang/
 ```
 $ ghci
 Prelude> :l filename.hs
+Prelude> runTestTT tests
 ```
 
 ## OCaml

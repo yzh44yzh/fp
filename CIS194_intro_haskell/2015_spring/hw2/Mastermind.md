@@ -128,7 +128,7 @@ Example:
 ## Exercise 5
 
 Now that we have the concept of consistency, we can filter a list of
-Code s to only contain those that are consistent with a given Move.
+Codes to only contain those that are consistent with a given Move.
 
 This will be useful to us since our game solver will start with a list
 of all possible codes and gradually filter the list based on each new
