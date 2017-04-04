@@ -1,8 +1,5 @@
 * Homework 2
 
-** hw2 2015
-http://www.seas.upenn.edu/~cis194/spring15/hw/02-lists.pdf
-
 ** hw2 2016
 http://www.seas.upenn.edu/~cis194/fall16/hw/02-ho-datatypes.html
 

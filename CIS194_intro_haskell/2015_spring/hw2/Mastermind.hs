@@ -75,18 +75,38 @@ isConsistent move code =
 
 -- Exercise 5 -----------------------------------------
 
--- filterCodes :: Move -> [Code] -> [Code]
--- filterCodes = undefined
+filterCodes :: Move -> [Code] -> [Code]
+filterCodes move codes = filter (isConsistent move) codes
 
 -- Exercise 6 -----------------------------------------
 
--- allCodes :: Int -> [Code]p
--- allCodes = undefined
+allCodes :: Int -> [Code]
+allCodes 0 = []
+allCodes codeSize = allCodes' codeSize [[]]
+
+allCodes' :: Int -> [Code] -> [Code]
+allCodes' 0 acc = acc
+allCodes' codeSize acc =
+    allCodes' (codeSize - 1) (acc >>= appendColors)
+        where appendColors = \code -> map (\peg -> peg : code) colors
+
+
 
 -- Exercise 7 -----------------------------------------
 
--- solve :: Code -> [Move]
--- solve = undefined
+solve :: Code -> [Move]
+solve code = solve' code (allCodes $ length code) []
+
+
+solve' :: Code -> [Code] -> [Move] -> [Move]
+solve' _ [] acc = acc
+solve' code guesses acc =
+    let guess : rest = guesses in
+    let move = getMove code guess in
+    let Move _ em _ = move in
+    if em == (length code) then reverse $ move : acc
+    else solve' code rest (move : acc)
+
 
 -- Bonus ----------------------------------------------
 
@@ -107,8 +127,28 @@ tests = TestList ["exactMatches 0" ~: 0  ~=? (exactMatches [Red, Blue, Green, Ye
                  ,"totalMatches" ~: 3 ~=? (totalMatches [Red, Blue, Yellow, Orange] [Red, Orange, Orange, Blue])
                  ,"getMove" ~: Move [Red, Orange, Orange, Blue] 1 2 ~=?
                       (getMove [Red, Blue, Yellow, Orange] [Red, Orange, Orange, Blue])
-                 ,"isConsistent 1" ~: True ~=?
-                      (isConsistent (Move [Red, Red, Blue, Green] 1 1) [Red, Blue, Yellow, Purple])
-                 ,"isConsistent 2" ~: False ~=?
-                      (isConsistent (Move [Red, Red, Blue, Green] 1 1) [Red, Blue, Red, Purple])
+                 ,"isConsistent 1" ~: True ~=? (isConsistent tMove tCode1)
+                 ,"isConsistent 2" ~: False ~=? (isConsistent tMove tCode2)
+                 ,"filterCodes 1" ~: [tCode1] ~=? filterCodes tMove [tCode1, tCode2]
+                 ,"filterCodes 2" ~: [] ~=? filterCodes tMove [tCode2, tCode2]
+                 ,"filterCodes 3" ~: [tCode1, tCode1] ~=? filterCodes tMove [tCode1, tCode1]
+                 ,"allCodes 0" ~: [] ~=? allCodes 0
+                 ,"allCodes 1" ~: [[Red], [Green], [Blue], [Yellow], [Orange], [Purple]] ~=? allCodes 1
+                 ,"allCodes 2" ~: [[Red, Red], [Green, Red], [Blue, Red], [Yellow, Red], [Orange, Red], [Purple, Red],
+                                   [Red, Green], [Green, Green], [Blue, Green], [Yellow, Green], [Orange, Green], [Purple, Green],
+                                   [Red, Blue], [Green, Blue], [Blue, Blue], [Yellow, Blue], [Orange, Blue], [Purple, Blue],
+                                   [Red, Yellow], [Green, Yellow], [Blue, Yellow], [Yellow, Yellow], [Orange, Yellow], [Purple, Yellow],
+                                   [Red, Orange], [Green, Orange], [Blue, Orange], [Yellow, Orange], [Orange, Orange], [Purple, Orange],
+                                   [Red, Purple], [Green, Purple], [Blue, Purple], [Yellow, Purple], [Orange, Purple], [Purple, Purple]
+                                  ] ~=? allCodes 2
                  ]
+
+
+tMove :: Move
+tMove = (Move [Red, Red, Blue, Green] 1 1)
+
+tCode1 :: Code
+tCode1 = [Red, Blue, Yellow, Purple]
+
+tCode2 :: Code
+tCode2 = [Red, Blue, Red, Purple]
