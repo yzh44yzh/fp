@@ -7,16 +7,15 @@ import Render
 strToState :: String -> State
 strToState str =
     map (\line -> map charToCell line) (lines str)
-        where charToCell =
-                  \char ->
-                      case char of
-                        'w' -> Wall
-                        ' ' -> Free
-                        't' -> Target
-                        'p' -> Player
-                        'b' -> Box
-                        'B' -> BoxInTarget
-                        _ -> error "invalid str"
+        where charToCell char =
+                  case char of
+                    'w' -> Wall
+                    ' ' -> Free
+                    't' -> Target
+                    'p' -> Player
+                    'b' -> Box
+                    'B' -> BoxInTarget
+                    _ -> error "invalid str"
 
 
 drawGame :: State -> String
@@ -38,4 +37,4 @@ main =
                " wwwwwwww \n" ++
                "          \n"
     in
-    (putStr . drawGame . strToState) game
+      game |> strToState |> drawGame |> putStr

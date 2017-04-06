@@ -1,3 +1,5 @@
+https://code-live.ru/post/cpp-ncurses-hello-world/
+
 # Reset
 Color_Off='\033[0m'       # Text Reset
 
