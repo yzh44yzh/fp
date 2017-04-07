@@ -22,8 +22,7 @@ https://en.wikipedia.org/wiki/Sokoban
 ** need 2 layers
 first layer: Wall | Free | Target
 second layer: Player | Box
-- renders both layers
-- render Box on Target differently
+renders both layers
 
 ** get & parse move
 - up, down, left, right
@@ -32,6 +31,7 @@ second layer: Player | Box
 ** apply move and redraw state
 - move player only
 - move also boxes
+- render Box on Target differently
 - prohibit invalid moves
 
 ** win

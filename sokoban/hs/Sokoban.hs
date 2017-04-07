@@ -2,12 +2,20 @@
 
 module Sokoban where
 
+import qualified Data.Map as M
+
 data Cell = Wall | Free | Target | Player | Box | BoxInTarget deriving Show
-type State = [[Cell]]
+
+type Field = M.Map (Int, Int) Cell
+
+data State = State { sokFieldWidth :: Int
+                   , sokFieldHeight :: Int
+                   , sokField :: Field
+                   } deriving Show
 
 data Direction = DUp | DDown | DLeft | DRight deriving Show
 
-data Position = Pos Integer Integer deriving Show
+data Position = Pos Int Int deriving Show
 
 
 (|>) :: a -> (a -> b) -> b

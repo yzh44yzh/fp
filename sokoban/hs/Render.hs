@@ -3,6 +3,8 @@
 module Render where
 
 import Sokoban
+import qualified Data.Map as M
+
 
 escape :: String
 escape = "\x001b"
@@ -15,7 +17,6 @@ startColor color =
 
 endColor :: String
 endColor = escape ++ "[0m"
-
 
 
 showCell :: Cell -> String
@@ -42,7 +43,19 @@ colorForCell cell =
 
 drawState :: State -> String
 drawState state =
-    concat $ map drawLine state
-    where
-      drawCell cell = (startColor $ colorForCell cell) ++ (showCell cell)
-      drawLine row = "    " ++ (concat $ map drawCell row) ++ endColor ++ "\n"
+    let width = sokFieldWidth state in
+    let height = sokFieldHeight state in
+    let field = sokField state in
+    [drawRow rowNum width field | rowNum <- [1..height]]
+    |> concat
+
+
+drawRow :: Int -> Int -> Field -> String
+drawRow rowNum width field =
+    [drawCell $ (M.!) field (rowNum, colNum) | colNum <- [1..width]]
+    |> concat
+    |> (++ endColor ++ "\n")
+
+
+drawCell :: Cell -> String
+drawCell cell = startColor (colorForCell cell) ++ (showCell cell)

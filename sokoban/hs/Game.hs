@@ -1,26 +1,13 @@
 {-# OPTIONS_GHC -Wall #-}
 
 import Sokoban
-import Render
-
-
-strToState :: String -> State
-strToState str =
-    map (\line -> map charToCell line) (lines str)
-        where charToCell char =
-                  case char of
-                    'w' -> Wall
-                    ' ' -> Free
-                    't' -> Target
-                    'p' -> Player
-                    'b' -> Box
-                    'B' -> BoxInTarget
-                    _ -> error "invalid str"
+import qualified Parser as P
+import qualified Render as R
 
 
 drawGame :: State -> String
 drawGame state =
-    concat ["\n", (drawState state), "\n"]
+    concat ["\n", (R.drawState state), "\n"]
 
 
 main :: IO ()
@@ -37,4 +24,4 @@ main =
                " wwwwwwww \n" ++
                "          \n"
     in
-      game |> strToState |> drawGame |> putStr
+      game |> P.strToState |> drawGame |> putStr
