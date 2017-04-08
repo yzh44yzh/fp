@@ -9,33 +9,32 @@ import qualified Data.Map as M
 strToState :: String -> State
 strToState str =
     let rows = lines str in
-    State { sokFieldWidth = length (head rows)
-          , sokFieldHeight = length rows
-          , sokField = parseRows rows
-          }
+    parseRows rows (newState { sokFieldWidth = length (head rows)
+                             , sokFieldHeight = length rows})
 
 
-parseRows :: [String] -> Field
-parseRows rows =
-    foldl f M.empty (zip [1,2..] rows)
-          where f :: Field -> (Int, String) -> Field
-                f acc (rowNum, row) = parseRow rowNum row acc
+parseRows :: [String] -> State -> State
+parseRows rows state =
+    foldl f state (zip [1..] rows)
+        where f :: State -> (Int, String) -> State
+              f acc (rowNum, row) = parseRow rowNum row acc
 
 
-parseRow :: Int -> String -> Field -> Field
-parseRow rowNum row field =
-    foldl f field (zip [1,2..] row)
-        where f :: Field -> (Int, Char) -> Field
-              f acc (colNum, char) = M.insert (rowNum, colNum) (charToCell char) acc
-
-
-charToCell :: Char -> Cell
-charToCell char =
-    case char of
-      'w' -> Wall
-      ' ' -> Free
-      't' -> Target
-      'p' -> Player
-      'b' -> Box
-      'B' -> BoxInTarget
-      _ -> error "invalid char"
+parseRow :: Int -> String -> State -> State
+parseRow rowNum row state =
+    foldl f state (zip [1..] row)
+        where f :: State -> (Int, Char) -> State
+              f acc (colNum, char) =
+                  let State { sokField = field, sokBoxes = boxes } = acc in
+                  let addCell cell = M.insert (rowNum, colNum) cell field in
+                  case char of
+                    'p' -> acc { sokField = addCell Free
+                               , sokPlayer = (Player rowNum colNum)
+                               }
+                    'b' -> acc { sokField = addCell Free
+                               , sokBoxes = (Box rowNum colNum) : boxes
+                               }
+                    'w' -> acc { sokField = addCell Wall }
+                    't' -> acc { sokField = addCell Target }
+                    ' ' -> acc { sokField = addCell Free }
+                    _ -> error "invalid char"

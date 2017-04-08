@@ -2,6 +2,9 @@
 
 ** hw2 2016
 http://www.seas.upenn.edu/~cis194/fall16/hw/02-ho-datatypes.html
+sokoban
+- player moves
+- player look the right way
 
 
 * Homework 3
@@ -17,12 +20,6 @@ hw3 2014 same as hw2 2013
 * Sokoban
 https://en.wikipedia.org/wiki/Sokoban
 
-** DONE draw state
-
-** need 2 layers
-first layer: Wall | Free | Target
-second layer: Player | Box
-renders both layers
 
 ** get & parse move
 - up, down, left, right
