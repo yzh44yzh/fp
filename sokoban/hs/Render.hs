@@ -24,7 +24,7 @@ drawRow rowNum state =
       f colNum
         | hasPlayer state rowNum colNum = drawPlayer
         | hasBox state rowNum colNum = drawBox
-        | otherwise = drawCell ((M.!) field (rowNum, colNum))
+        | otherwise = (M.!) field (rowNum, colNum) |> drawCell
 
 
 hasPlayer :: State -> Int -> Int -> Bool

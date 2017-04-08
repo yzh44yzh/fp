@@ -3,8 +3,9 @@
 ** hw2 2016
 http://www.seas.upenn.edu/~cis194/fall16/hw/02-ho-datatypes.html
 sokoban
-- player moves
-- player look the right way
+- read user input
+- move player (up, down, left, right) and redraw game
+- player look the right way (up, down, left, right)
 
 
 * Homework 3
@@ -20,22 +21,17 @@ hw3 2014 same as hw2 2013
 * Sokoban
 https://en.wikipedia.org/wiki/Sokoban
 
-
-** get & parse move
-- up, down, left, right
-- 10u5ldd7r (10 up, 5 left, down, down, right)
-
 ** apply move and redraw state
-- move player only
-- move also boxes
-- render Box on Target differently
+- also move boxes
 - prohibit invalid moves
+- render Box on Target differently
 
 ** win
 
 ** levels
 
 ** ncurses
+
 
 * fpe
 - week2

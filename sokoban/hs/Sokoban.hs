@@ -28,6 +28,7 @@ newState = State { sokFieldWidth = 1
                  , sokBoxes = []
                  }
 
+
 (|>) :: a -> (a -> b) -> b
 (|>) a f = f a
 
