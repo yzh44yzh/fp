@@ -3,11 +3,22 @@
 import Sokoban
 import qualified Parser as P
 import qualified Render as R
-
+import qualified System.IO as SIO
 
 drawGame :: State -> String
 drawGame state =
     concat ["\n", (R.drawState state), "\n"]
+
+
+loop :: State -> IO ()
+loop state =
+    do
+      putStr $ drawGame state
+      putStr "Move (u)p, (d)own, (l)eft, (r)ight: "
+      SIO.hFlush SIO.stdout
+      move <- getLine
+      if move `elem` ["stop", "quit", "q", ""] then return ()
+      else move |> str2move |> doMove state |> loop
 
 
 main :: IO ()
@@ -24,4 +35,4 @@ main =
                " wwwwwwww \n" ++
                "          \n"
     in
-      game |> P.strToState |> drawGame |> putStr
+      game |> P.strToState |> loop

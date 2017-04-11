@@ -19,10 +19,10 @@ drawRow :: Int -> State -> String
 drawRow rowNum state =
     map f [1..width] |> concat |> (++ endColor ++ "\n")
     where
-      State {sokFieldWidth = width, sokField = field} = state
+      State {sokFieldWidth = width, sokField = field, sokPlayer = player} = state
       f :: Int -> String
       f colNum
-        | hasPlayer state rowNum colNum = drawPlayer
+        | hasPlayer state rowNum colNum = drawPlayer player
         | hasBox state rowNum colNum = drawBox
         | otherwise = (M.!) field (rowNum, colNum) |> drawCell
 
@@ -32,7 +32,7 @@ hasPlayer state rowNum colNum =
     pRowNum == rowNum && pColNum == colNum
         where
           State { sokPlayer = player } = state
-          Player pRowNum pColNum = player
+          Player pRowNum pColNum _ = player
 
 
 hasBox :: State -> Int -> Int -> Bool
@@ -50,8 +50,8 @@ draw color cellStr =
     concat [startColor color, cellStr]
 
 
-drawPlayer :: String
-drawPlayer = draw playerColor playerStr
+drawPlayer :: Player -> String
+drawPlayer player = draw playerColor (playerStr player)
 
 
 drawBox :: String
@@ -91,8 +91,9 @@ freeCellStr = "  "
 targetCellStr :: String
 targetCellStr = ".."
 
-playerStr :: String
-playerStr = "@^"
+playerStr :: Player -> String
+playerStr (Player _ _ PLeft) = "@^"
+playerStr (Player _ _ PRight) = "^@"
 
 boxStr :: String
 boxStr = "[]"
