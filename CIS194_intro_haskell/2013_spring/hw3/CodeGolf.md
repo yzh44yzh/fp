@@ -76,7 +76,7 @@ numbers). Your output must exactly match the output shown in the
 examples below.
 
 ```
-histogram [1,1,1,5] ==
+histogram [0,0,0,4] ==
 *
 *
 *   *
@@ -85,7 +85,7 @@ histogram [1,1,1,5] ==
 ```
 
 ```
-histogram [1,4,5,4,6,6,3,4,2,4,9] ==
+histogram [0,4,8,1,2,0,3,2,0,5,0]
 *
 *
 * *
