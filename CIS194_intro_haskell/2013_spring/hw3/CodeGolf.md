@@ -49,15 +49,15 @@ after it.
 
 Write a function
 ```
-localMaxima :: [Integer] -> [Integer]
+local_maxima :: [Integer] -> [Integer]
 ```
 which finds all the local maxima in the input list and returns them in order.
 
 For example:
 ```
-localMaxima [2,9,5,6,1] == [9,6]
-localMaxima [2,3,4,1,5] == [4]
-localMaxima [1,2,3,4,5] == []
+local_maxima [2,9,5,6,1] == [9,6]
+local_maxima [2,3,4,1,5] == [4]
+local_maxima [1,2,3,4,5] == []
 ```
 
 
