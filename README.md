@@ -3,17 +3,29 @@ Brent Yorgey's course
 https://byorgey.wordpress.com/about/
 Assistant professor in the department of mathematics and computer science at Hendrix College in Conway, Arkansas, USA.
 
-Spring 2013
+## Spring 2013
 http://www.seas.upenn.edu/%7Ecis194/spring13/
+hw1. Validate Credit Card Numbers. The Towers of Hanoi.
+hw2. Log file parsing.
+hw3. Code Golf: Hopscotch, Local maxima, Histogram.
 
-Fall 2014
+## Fall 2014
 http://www.seas.upenn.edu/~cis194/fall14/
+hw1. Same as 2013 hw1.
+hw2. Scrabble.
+hw3. Same as 2013 hw3.
 
-Spring 2015
+## Spring 2015
 http://www.seas.upenn.edu/~cis194/spring15/
+hw1. Same as 2013 hw1.
+hw2. Mastermind.
+hw3. Interpreter.
 
-Fall 2016
+## Fall 2016
 http://www.seas.upenn.edu/~cis194/fall16/
+hw1. Traffic lights. Blooming trees.
+hw2. Sokoban.
+hw3. Sokoban.
 
 
 # Functional Programming in Erlang
