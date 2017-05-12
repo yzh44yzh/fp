@@ -9,7 +9,7 @@ type Position = (Int, Int)
 type Field = M.Map Position Cell
 
 data Player = Player Position PlayerDirection deriving Show
-data Box = Box Position deriving Show
+data Box = Box Position deriving (Show, Eq)
 
 data Move = MUp | MDown | MLeft | MRight | MNone deriving Show
 data PlayerDirection = PLeft | PRight deriving Show
@@ -48,22 +48,39 @@ str2move _ = MNone
 
 
 doMove :: State -> Move -> State
-doMove state mv =
-    state { sokPlayer = player3, sokBoxes = boxes2 }
+doMove state@State{sokPlayer = player, sokBoxes = boxes} mv =
+    if (noWallAt state newPos) && okWithBoxMove
+    then state { sokPlayer = player2, sokBoxes = boxes2 }
+    else state
         where
-          State { sokField = field, sokPlayer = player, sokBoxes = boxes } = state
+          Player currPos _ = player
+          newPos = move mv currPos
           player2 = movePlayer mv player
-          Player pos _ = player2
-          player3 = if playerAllowed field pos then player2 else player
-          boxes2 = moveBoxes mv pos boxes
+          boxes2 = moveBoxes mv newPos state boxes
+          boxShouldMoved = hasBoxAt state newPos
+          boxWasMoved = boxes /= boxes2
+          okWithBoxMove = (not boxShouldMoved) || (boxShouldMoved && boxWasMoved)
 
 
-playerAllowed :: Field -> Position -> Bool
-playerAllowed field (row, col) =
+noWallAt :: State -> Position -> Bool
+noWallAt State{sokField = field} (row, col) =
     case (M.!) field (row, col) of
       Wall -> False
       Free -> True
       Target -> True
+
+
+noBoxAt :: State -> Position -> Bool
+noBoxAt State{sokBoxes = boxes} pos =
+    foldl f True boxes
+          where f :: Bool -> Box -> Bool
+                f False _ = False
+                f _ (Box bPos) = bPos /= pos
+
+
+hasBoxAt :: State -> Position -> Bool
+hasBoxAt state pos =
+    not (noBoxAt state pos)
 
 
 move :: Move -> Position -> Position
@@ -80,10 +97,14 @@ movePlayer MRight (Player p _) = Player (move MRight p) PRight
 movePlayer mv (Player p d) = Player (move mv p) d
 
 
-moveBoxes :: Move -> Position -> [Box] -> [Box]
-moveBoxes mv pPos boxes =
-    map f boxes
-        where f :: Box -> Box
-              f box@(Box bPos)
-                | pPos == bPos = Box (move mv bPos)
-                | otherwise = box
+moveBoxes :: Move -> Position -> State -> [Box] -> [Box]
+moveBoxes mv atPos state boxes =
+    map (\box -> moveBox mv atPos state box) boxes
+
+
+moveBox :: Move -> Position -> State -> Box -> Box
+moveBox mv atPos state box@(Box pos) =
+    if pos == atPos && (noWallAt state newPos) && (noBoxAt state newPos)
+    then Box newPos
+    else box
+        where newPos = move mv pos
