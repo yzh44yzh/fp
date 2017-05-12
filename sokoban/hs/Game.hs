@@ -16,9 +16,9 @@ loop state =
       putStr $ drawGame state
       putStr "Move (u)p, (d)own, (l)eft, (r)ight: "
       SIO.hFlush SIO.stdout
-      move <- getLine
-      if move `elem` ["stop", "quit", "q", ""] then return ()
-      else move |> str2move |> doMove state |> loop
+      mv <- getLine
+      if mv `elem` ["stop", "quit", "q", ""] then return ()
+      else mv |> str2move |> doMove state |> loop
 
 
 main :: IO ()

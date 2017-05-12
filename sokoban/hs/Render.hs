@@ -32,7 +32,7 @@ hasPlayer state rowNum colNum =
     pRowNum == rowNum && pColNum == colNum
         where
           State { sokPlayer = player } = state
-          Player pRowNum pColNum _ = player
+          Player (pRowNum, pColNum) _ = player
 
 
 hasBox :: State -> Int -> Int -> Bool
@@ -41,7 +41,7 @@ hasBox state rowNum colNum =
     where
       State { sokBoxes = boxes } = state
       f :: Box -> Bool
-      f (Box bRowNum bColNum) =
+      f (Box (bRowNum, bColNum)) =
           bRowNum == rowNum && bColNum == colNum
 
 
@@ -92,8 +92,8 @@ targetCellStr :: String
 targetCellStr = ".."
 
 playerStr :: Player -> String
-playerStr (Player _ _ PLeft) = "@^"
-playerStr (Player _ _ PRight) = "^@"
+playerStr (Player _ PLeft) = "@^"
+playerStr (Player _ PRight) = "^@"
 
 boxStr :: String
 boxStr = "[]"

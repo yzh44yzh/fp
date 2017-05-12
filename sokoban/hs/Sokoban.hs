@@ -5,10 +5,11 @@ module Sokoban where
 import qualified Data.Map as M
 
 data Cell = Wall | Free | Target deriving Show
-type Field = M.Map (Int, Int) Cell
+type Position = (Int, Int)
+type Field = M.Map Position Cell
 
-data Player = Player Int Int PlayerDirection deriving Show
-data Box = Box Int Int deriving Show
+data Player = Player Position PlayerDirection deriving Show
+data Box = Box Position deriving Show
 
 data Move = MUp | MDown | MLeft | MRight | MNone deriving Show
 data PlayerDirection = PLeft | PRight deriving Show
@@ -25,7 +26,7 @@ newState :: State
 newState = State { sokFieldWidth = 1
                  , sokFieldHeight = 1
                  , sokField = M.empty
-                 , sokPlayer = Player 1 1 PLeft
+                 , sokPlayer = Player (1, 1) PLeft
                  , sokBoxes = []
                  }
 
@@ -47,16 +48,42 @@ str2move _ = MNone
 
 
 doMove :: State -> Move -> State
-doMove state move =
-    state { sokPlayer = player2 }
+doMove state mv =
+    state { sokPlayer = player3, sokBoxes = boxes2 }
         where
-          State { sokPlayer = player } = state
-          player2 = movePlayer move player
+          State { sokField = field, sokPlayer = player, sokBoxes = boxes } = state
+          player2 = movePlayer mv player
+          Player pos _ = player2
+          player3 = if playerAllowed field pos then player2 else player
+          boxes2 = moveBoxes mv pos boxes
+
+
+playerAllowed :: Field -> Position -> Bool
+playerAllowed field (row, col) =
+    case (M.!) field (row, col) of
+      Wall -> False
+      Free -> True
+      Target -> True
+
+
+move :: Move -> Position -> Position
+move MUp (row, col) = ((row - 1), col)
+move MDown (row, col) = ((row + 1), col)
+move MLeft (row, col) = (row, (col - 1))
+move MRight (row, col) = (row, (col + 1))
+move MNone p = p
 
 
 movePlayer :: Move -> Player -> Player
-movePlayer MUp (Player row col d) = Player (row - 1) col d
-movePlayer MDown (Player row col d) = Player (row + 1) col d
-movePlayer MLeft (Player row col _) = Player row (col - 1) PLeft
-movePlayer MRight (Player row col _) = Player row (col + 1) PRight
-movePlayer MNone player = player
+movePlayer MLeft (Player p _) = Player (move MLeft p) PLeft
+movePlayer MRight (Player p _) = Player (move MRight p) PRight
+movePlayer mv (Player p d) = Player (move mv p) d
+
+
+moveBoxes :: Move -> Position -> [Box] -> [Box]
+moveBoxes mv pPos boxes =
+    map f boxes
+        where f :: Box -> Box
+              f box@(Box bPos)
+                | pPos == bPos = Box (move mv bPos)
+                | otherwise = box

@@ -29,10 +29,10 @@ parseRow rowNum row state =
                   let addCell cell = M.insert (rowNum, colNum) cell field in
                   case char of
                     'p' -> acc { sokField = addCell Free
-                               , sokPlayer = (Player rowNum colNum PLeft)
+                               , sokPlayer = (Player (rowNum, colNum) PLeft)
                                }
                     'b' -> acc { sokField = addCell Free
-                               , sokBoxes = (Box rowNum colNum) : boxes
+                               , sokBoxes = (Box (rowNum, colNum)) : boxes
                                }
                     'w' -> acc { sokField = addCell Wall }
                     't' -> acc { sokField = addCell Target }
