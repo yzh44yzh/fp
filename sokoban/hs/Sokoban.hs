@@ -35,18 +35,6 @@ newState = State { sokFieldWidth = 1
 (|>) a f = f a
 
 
-str2move :: String -> Move
-str2move "u" = MUp
-str2move "up" = MUp
-str2move "d" = MDown
-str2move "down" = MDown
-str2move "l" = MLeft
-str2move "left" = MLeft
-str2move "r" = MRight
-str2move "right" = MRight
-str2move _ = MNone
-
-
 doMove :: State -> Move -> State
 doMove state@State{sokPlayer = player, sokBoxes = boxes} mv =
     if (noWallAt state newPos) && okWithBoxMove

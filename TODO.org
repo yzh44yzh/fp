@@ -2,8 +2,12 @@
 
 ** hw3 2016
 Sokoban:
-- move boxes
-- prohibit invalid moves
+- wrong level: there are 7 boxes but only 6 spots for them
+
+- unit tests for each module and function
+  where they make sence (Sokoban.moveBoxes, doMove etc)
+- refactor?
+
 - render Box on Target differently
 - win
 - start screen, end screen

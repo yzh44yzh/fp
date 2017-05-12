@@ -6,6 +6,14 @@ import Sokoban
 import qualified Data.Map as M
 
 
+char2move :: Char -> Move
+char2move 'a' = MLeft
+char2move 'w' = MUp
+char2move 'd' = MRight
+char2move 's' = MDown
+char2move _ = MNone
+
+
 strToState :: String -> State
 strToState str =
     let rows = lines str in
