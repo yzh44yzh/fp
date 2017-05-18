@@ -42,6 +42,9 @@ parseRow rowNum row state =
                     'b' -> acc { sokField = addCell Free
                                , sokBoxes = (Box (rowNum, colNum)) : boxes
                                }
+                    'B' -> acc { sokField = addCell Target
+                               , sokBoxes = (Box (rowNum, colNum)) : boxes
+                               }
                     'w' -> acc { sokField = addCell Wall }
                     't' -> acc { sokField = addCell Target }
                     ' ' -> acc { sokField = addCell Free }

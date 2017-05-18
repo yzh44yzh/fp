@@ -31,7 +31,7 @@ main =
                " www btw  \n" ++
                " wtwwb w  \n" ++
                " w w t ww \n" ++
-               " wb bbbtw \n" ++
+               " wb Bbbtw \n" ++
                " w   t  w \n" ++
                " wwwwwwww \n" ++
                "          \n"
