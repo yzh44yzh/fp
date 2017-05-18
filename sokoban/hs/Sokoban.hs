@@ -4,7 +4,7 @@ module Sokoban where
 
 import qualified Data.Map as M
 
-data Cell = Wall | Free | Target deriving Show
+data Cell = Wall | Free | Target deriving (Show, Eq)
 type Position = (Int, Int)
 type Field = M.Map Position Cell
 
@@ -96,3 +96,13 @@ moveBox mv atPos state box@(Box pos) =
     then Box newPos
     else box
         where newPos = move mv pos
+
+
+win :: State -> Bool
+win State{sokField = field, sokBoxes = boxes} =
+    map f boxes |> all p
+        where
+          f :: Box -> Cell
+          f (Box pos) = (M.!) field pos
+          p :: Cell -> Bool
+          p cell = cell == Target

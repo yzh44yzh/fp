@@ -8,13 +8,19 @@ import qualified System.Process as SP
 
 loop :: State -> IO ()
 loop state =
-    do
-      _ <- SP.system "clear"
-      putStr $ drawGame state
-      putStr "Move with (wasd) keys or (q)iut: "
-      mv <- getChar
-      if mv == 'q' then return ()
-      else mv |> P.char2move |> doMove state |> loop
+    if win state then
+        do
+          _ <- SP.system "clear"
+          putStr $ drawGame state
+          putStr "Win!"
+    else
+        do
+          _ <- SP.system "clear"
+          putStr $ drawGame state
+          putStr "Move with (wasd) keys or (q)iut: "
+          mv <- getChar
+          if mv == 'q' then return ()
+          else mv |> P.char2move |> doMove state |> loop
 
 
 drawGame :: State -> String
