@@ -8,6 +8,7 @@ http://www.seas.upenn.edu/%7Ecis194/spring13/
 hw1. Validate Credit Card Numbers. The Towers of Hanoi.
 hw2. Log file parsing.
 hw3. Code Golf: Hopscotch, Local maxima, Histogram.
+hw4. point-free, fold
 
 ## Fall 2014
 http://www.seas.upenn.edu/~cis194/fall14/

@@ -100,5 +100,4 @@ moveBox mv atPos state box@(Box pos) =
 
 win :: State -> Bool
 win State{sokField = field, sokBoxes = boxes} =
-    map (\(Box pos) -> (M.!) field pos) boxes
-        |> all (\cell -> cell == Target)
+    map (\(Box pos) -> (M.!) field pos) boxes |> all (==Target)
