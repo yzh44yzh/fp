@@ -15,6 +15,7 @@ http://www.seas.upenn.edu/~cis194/fall14/
 hw1. Same as 2013 hw1.
 hw2. Scrabble.
 hw3. Same as 2013 hw3.
+hw4. Parametricity. Binary Search Trees.
 
 ## Spring 2015
 http://www.seas.upenn.edu/~cis194/spring15/

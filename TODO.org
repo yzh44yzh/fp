@@ -1,13 +1,11 @@
 * Homework 4
 
+** DONE hw4 2014
+
 ** hw4 2013
 + http://www.seas.upenn.edu/%7Ecis194/spring13/lectures/04-higher-order.html
 + http://www.seas.upenn.edu/%7Ecis194/spring13/hw/04-higher-order.pdf
 - fold.md
-
-** hw4 2014
-http://www.seas.upenn.edu/~cis194/fall14/lectures/04-poly.html
-http://www.seas.upenn.edu/~cis194/fall14/hw/04-poly.pdf
 
 ** hw4 2015
 http://www.seas.upenn.edu/~cis194/spring15/lectures/04-typeclasses.html
