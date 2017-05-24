@@ -2,18 +2,19 @@
 
 ** DONE hw4 2014
 
-** hw4 2013
-+ http://www.seas.upenn.edu/%7Ecis194/spring13/lectures/04-higher-order.html
-+ http://www.seas.upenn.edu/%7Ecis194/spring13/hw/04-higher-order.pdf
-- fold.md
-
 ** hw4 2015
-http://www.seas.upenn.edu/~cis194/spring15/lectures/04-typeclasses.html
-http://www.seas.upenn.edu/~cis194/spring15/hw/04-typeclasses.pdf
++ http://www.seas.upenn.edu/~cis194/spring15/lectures/04-typeclasses.html
+- http://www.seas.upenn.edu/~cis194/spring15/hw/04-typeclasses.pdf
+- Polynomials
 
 ** hw4 2016
 http://www.seas.upenn.edu/~cis194/fall16/lectures/04-typeclasses.html
 http://www.seas.upenn.edu/~cis194/fall16/hw/04-typeclasses.html
+
+** hw4 2013
++ http://www.seas.upenn.edu/%7Ecis194/spring13/lectures/04-higher-order.html
++ http://www.seas.upenn.edu/%7Ecis194/spring13/hw/04-higher-order.pdf
+- fold.md
 
 
 * Homework 5

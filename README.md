@@ -22,6 +22,7 @@ http://www.seas.upenn.edu/~cis194/spring15/
 hw1. Same as 2013 hw1.
 hw2. Mastermind.
 hw3. Interpreter.
+hw4. Polynomials.
 
 ## Fall 2016
 http://www.seas.upenn.edu/~cis194/fall16/
